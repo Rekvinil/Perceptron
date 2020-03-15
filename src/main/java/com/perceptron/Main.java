@@ -23,7 +23,7 @@ public class Main {
             layer1.add(new Neuron());
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 27; i++) {
             layer2.add(new Neuron());
         }
 
@@ -54,7 +54,7 @@ public class Main {
         XSSFWorkbook wb = readFile(file);
         if(wb!=null) {
             XSSFSheet sheet = wb.getSheetAt(0);
-            for (int i = 0; i < 1000; i++) {                      //обучение
+            for (int i = 0; i < 50; i++) {                      //обучение
                 startTraining(sheet, layer1, layer2, layer3);
             }
             test(sheet, layer1, layer2, layer3);                 //тест
@@ -139,7 +139,8 @@ public class Main {
 
     @SafeVarargs
     public static void test(XSSFSheet sheet, List<Neuron>... lists){
-        Row row = sheet.getRow(2);
+        Row row = sheet.getRow(7);
+        System.out.println(row.getCell(0).getStringCellValue());
         for(int i=0; i<lists[0].size(); i++){
             lists[0].get(i).setValue(row.getCell(i+2).getNumericCellValue());
         }
